@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: integrationJMS
+
+# DATABASE
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: 123
+# JPA / HIBERNATE
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+      hbm2ddl:
+        auto: validate
+      temp:
+        use_jdbc_metadata_defaults: false
+
+# JMS
+  activemq:
+    broker-url: tcp://localhost:61616
+    pool:
+      enabled: true
+  jms:
+    listener:
+      concurrency: 3
+      max-concurrency: 10
+  destination:
+    queue: TEST-QUEU
+
+servers:
+  mq:
+    timeout: 2000
+    sessionCacheSize: 10
+    queue: TEST_OUT_QUEUE
